@@ -1,0 +1,119 @@
+#server配置
+server:
+  port: 8088
+  servlet:
+    context-path: /hotel
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+  tomcat:
+    max-http-post-size: 100000000
+    max-swallow-size: 100000000
+
+#日志输出等级
+logging:
+  level:
+    root: info
+
+spring:
+  #mysql连接
+  datasource:
+    url: jdbc:mysql://192.168.3.48:3306/hotel?characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  #redis连接
+  redis:
+    host: 192.168.3.48
+    port: 6379
+  rabbitmq:
+    host: 192.168.3.48
+    port: 5672
+    username: user
+    password: 123456
+    virtual-host: /user
+  #启用缓存
+  cache:
+    type: redis
+  jackson:
+    time-zone: GMT+8
+  profiles: dev
+
+mybatis:
+  #开启驼峰命名匹配规则
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.hotel.core.entity
+
+shiro:
+  loginUrl: /login
+  unauthorizedUrl: /unauthorized
+  successUrl: /success
+
+config:
+  arcface-sdk:
+    sdk-lib-path: D:/arcsoft-lib/
+    app-id: GN617eujnnKNADov66rtFz3fPBR3LMGiaXpG3X4fhQzE
+    sdk-key: 5jLasHRHqkGGrj4jKgzxiMjGBEtLsnw22c6dcr9tLGe2
+    thread-pool-size: 5
+---
+#server配置
+server:
+  port: 8088
+  servlet:
+    context-path: /hotel
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+  tomcat:
+    max-http-post-size: 100000000
+    max-swallow-size: 100000000
+
+#日志输出等级
+logging:
+  level:
+    root: info
+
+spring:
+  #mysql连接
+  datasource:
+    url: jdbc:mysql://101.132.135.179:3306/hotel?characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  #redis连接
+  redis:
+      host: 101.132.135.179
+      port: 6379
+  rabbitmq:
+    host: 101.132.135.179
+    port: 5672
+    username: user
+    password: 123456
+    virtual-host: /user
+  #启用缓存
+  cache:
+    type: redis
+  jackson:
+    time-zone: GMT+8
+  profiles: product
+
+mybatis:
+  #开启驼峰命名匹配规则
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.hotel.core.entity
+
+shiro:
+  loginUrl: /login
+  unauthorizedUrl: /unauthorized
+  successUrl: /success
+
+config:
+  arcface-sdk:
+    sdk-lib-path: /usr/lib/
+    app-id: GN617eujnnKNADov66rtFz3fPBR3LMGiaXpG3X4fhQzE
+    sdk-key: 5jLasHRHqkGGrj4jKgzxiMjG38K8GkPbNDobFvWL5mJP
+    thread-pool-size: 5

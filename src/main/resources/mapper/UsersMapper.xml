@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hotel.core.mapper.UsersMapper">
+  <resultMap id="BaseResultMap" type="com.hotel.core.entity.Users">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+    <result column="truename" jdbcType="VARCHAR" property="truename" />
+    <result column="gender" jdbcType="VARCHAR" property="gender" />
+    <result column="nation" jdbcType="VARCHAR" property="nation" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="microblog_account_states" jdbcType="INTEGER" property="microblogAccountStates" />
+    <result column="qq_account_states" jdbcType="INTEGER" property="qqAccountStates" />
+    <result column="wechat_account_states" jdbcType="INTEGER" property="wechatAccountStates" />
+    <result column="alipay_account_states" jdbcType="INTEGER" property="alipayAccountStates" />
+    <result column="baidu_account_states" jdbcType="INTEGER" property="baiduAccountStates" />
+    <result column="idcard_front" jdbcType="VARCHAR" property="idcardFront" />
+    <result column="idcard_back" jdbcType="VARCHAR" property="idcardBack" />
+    <result column="idcard_number" jdbcType="VARCHAR" property="idcardNumber" />
+    <result column="registration_date" jdbcType="TIMESTAMP" property="registrationDate" />
+    <result column="membership_score" jdbcType="VARCHAR" property="membershipScore" />
+    <result column="membership_level" jdbcType="INTEGER" property="membershipLevel" />
+    <result column="realname_authentication_states" jdbcType="INTEGER" property="realnameAuthenticationStates" />
+    <result column="states" jdbcType="INTEGER" property="states" />
+    <result column="test1" jdbcType="VARCHAR" property="test1" />
+    <result column="test2" jdbcType="VARCHAR" property="test2" />
+    <result column="test3" jdbcType="VARCHAR" property="test3" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, username, password, nickname, avatar, truename, gender, nation, address, birthday, 
+    phone, email, microblog_account_states, qq_account_states, wechat_account_states, 
+    alipay_account_states, baidu_account_states, idcard_front, idcard_back, idcard_number, 
+    registration_date, membership_score, membership_level, realname_authentication_states,
+    states, test1, test2, test3
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from users
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from users
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hotel.core.entity.Users">
+    insert into users (id, username, password, 
+      nickname, avatar, truename, 
+      gender, nation, address, 
+      birthday, phone, email, 
+      microblog_account_states, qq_account_states, 
+      wechat_account_states, alipay_account_states, 
+      baidu_account_states, idcard_front, idcard_back, 
+      idcard_number, registration_date, membership_score,
+      membership_level, realname_authentication_states,
+      states, test1, test2, 
+      test3)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{nickname,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}, #{truename,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=DATE}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{microblogAccountStates,jdbcType=INTEGER}, #{qqAccountStates,jdbcType=INTEGER}, 
+      #{wechatAccountStates,jdbcType=INTEGER}, #{alipayAccountStates,jdbcType=INTEGER}, 
+      #{baiduAccountStates,jdbcType=INTEGER}, #{idcardFront,jdbcType=VARCHAR}, #{idcardBack,jdbcType=VARCHAR}, 
+      #{idcardNumber,jdbcType=VARCHAR}, #{registrationDate,jdbcType=TIMESTAMP}, #{membershipScore,jdbcType=VARCHAR}, 
+      #{membershipLevel,jdbcType=INTEGER}, #{realnameAuthenticationStates,jdbcType=INTEGER}, 
+      #{states,jdbcType=INTEGER}, #{test1,jdbcType=VARCHAR}, #{test2,jdbcType=VARCHAR}, 
+      #{test3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hotel.core.entity.Users" useGeneratedKeys="true" keyProperty="id">
+    insert into users
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="nickname != null">
+        nickname,
+      </if>
+      <if test="avatar != null">
+        avatar,
+      </if>
+      <if test="truename != null">
+        truename,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="nation != null">
+        nation,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="microblogAccountStates != null">
+        microblog_account_states,
+      </if>
+      <if test="qqAccountStates != null">
+        qq_account_states,
+      </if>
+      <if test="wechatAccountStates != null">
+        wechat_account_states,
+      </if>
+      <if test="alipayAccountStates != null">
+        alipay_account_states,
+      </if>
+      <if test="baiduAccountStates != null">
+        baidu_account_states,
+      </if>
+      <if test="idcardFront != null">
+        idcard_front,
+      </if>
+      <if test="idcardBack != null">
+        idcard_back,
+      </if>
+      <if test="idcardNumber != null">
+        idcard_number,
+      </if>
+      <if test="registrationDate != null">
+        registration_date,
+      </if>
+      <if test="membershipScore != null">
+        membership_score,
+      </if>
+      <if test="membershipLevel != null">
+        membership_level,
+      </if>
+      <if test="realnameAuthenticationStates != null">
+        realname_authentication_states,
+      </if>
+      <if test="states != null">
+        states,
+      </if>
+      <if test="test1 != null">
+        test1,
+      </if>
+      <if test="test2 != null">
+        test2,
+      </if>
+      <if test="test3 != null">
+        test3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null">
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="truename != null">
+        #{truename,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="microblogAccountStates != null">
+        #{microblogAccountStates,jdbcType=VARCHAR},
+      </if>
+      <if test="qqAccountStates != null">
+        #{qqAccountStates,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatAccountStates != null">
+        #{wechatAccountStates,jdbcType=VARCHAR},
+      </if>
+      <if test="alipayAccountStates != null">
+        #{alipayAccountStates,jdbcType=VARCHAR},
+      </if>
+      <if test="baiduAccountStates != null">
+        #{baiduAccountStates,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardFront != null">
+        #{idcardFront,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardBack != null">
+        #{idcardBack,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardNumber != null">
+        #{idcardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationDate != null">
+        #{registrationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="membershipScore != null">
+        #{membershipScore,jdbcType=VARCHAR},
+      </if>
+      <if test="membershipLevel != null">
+        #{membershipLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="realnameAuthenticationStates != null">
+        #{realnameAuthenticationStates,jdbcType=VARCHAR},
+      </if>
+      <if test="states != null">
+        #{states,jdbcType=VARCHAR},
+      </if>
+      <if test="test1 != null">
+        #{test1,jdbcType=VARCHAR},
+      </if>
+      <if test="test2 != null">
+        #{test2,jdbcType=VARCHAR},
+      </if>
+      <if test="test3 != null">
+        #{test3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hotel.core.entity.Users">
+    update users
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null">
+        avatar = #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="truename != null">
+        truename = #{truename,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hotel.core.entity.Users">
+    update users
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      avatar = #{avatar,jdbcType=VARCHAR},
+      truename = #{truename,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      nation = #{nation,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      microblog_account_states = #{microblogAccountStates,jdbcType=INTEGER},
+      qq_account_states = #{qqAccountStates,jdbcType=INTEGER},
+      wechat_account_states = #{wechatAccountStates,jdbcType=INTEGER},
+      alipay_account_states = #{alipayAccountStates,jdbcType=INTEGER},
+      baidu_account_states = #{baiduAccountStates,jdbcType=INTEGER},
+      idcard_front = #{idcardFront,jdbcType=VARCHAR},
+      idcard_back = #{idcardBack,jdbcType=VARCHAR},
+      idcard_number = #{idcardNumber,jdbcType=VARCHAR},
+      registration_date = #{registrationDate,jdbcType=TIMESTAMP},
+      membership_score = #{membershipScore,jdbcType=VARCHAR},
+      membership_level = #{membershipLevel,jdbcType=INTEGER},
+      realname_authentication_states = #{realnameAuthenticationStates,jdbcType=INTEGER},
+      states = #{states,jdbcType=INTEGER},
+      test1 = #{test1,jdbcType=VARCHAR},
+      test2 = #{test2,jdbcType=VARCHAR},
+      test3 = #{test3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectUserByUsername" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM users
+    WHERE username = #{username,jdbcType=VARCHAR}
+  </select>
+  <select id="selectUserListByLimit" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM users
+    <where>
+      <if test="states != null and states != ''">
+        states = #{states,jdbcType=INTEGER}
+      </if>
+    </where>
+    LIMIT #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+  <select id="selectCounts" resultType="int" parameterType="java.lang.Integer">
+    SELECT count(*)
+    from users
+    <where>
+      <if test="states != null and states != ''">
+        states = #{states,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+  <update id="updateUserByStates" parameterType="com.hotel.core.entity.Users">
+    UPDATE users
+    <set>
+      <if test="states != null and states != ''">
+        states = #{states,jdbcType=INTEGER}
+      </if>
+    </set>
+    WHERE id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="searchUser" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM users
+    <where>
+      <if test="username != null and username != ''">
+        AND username LIKE "%"#{username,jdbcType=VARCHAR}"%"
+      </if>
+      <if test="phone != null and phone != ''">
+        AND phone LIKE "%"#{phone,jdbcType=VARCHAR}"%"
+      </if>
+      <if test="email != null and email != ''">
+        AND email LIKE "%"#{email,jdbcType=VARCHAR}"%"
+      </if>
+      AND states = 1
+    </where>
+  </select>
+  <select id="selectUserListByMembershipLevelSortDesc" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM users
+    <where>
+      <if test="states != null and states != ''">
+        states = #{states,jdbcType=INTEGER}
+      </if>
+    </where>
+    ORDER BY membership_level DESC
+    LIMIT #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+  <select id="selectUserListByMembershipLevelSortAsc" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM users
+    <where>
+      <if test="states != null and states != ''">
+        states = #{states,jdbcType=INTEGER}
+      </if>
+    </where>
+    ORDER BY membership_level ASC 
+    LIMIT #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+  <select id="selectUserListByGender" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM users
+    <where>
+      <if test="gender != null and gender != ''">
+        AND gender = #{gender,jdbcType=INTEGER}
+      </if>
+      <if test="states != null and states != ''">
+        AND states = #{states,jdbcType=INTEGER}
+      </if>
+    </where>
+    LIMIT #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+  <select id="selectUserListByRole" resultMap="BaseResultMap" parameterType="map">
+    SELECT * FROM users u
+    LEFT JOIN user_role ur ON u.id = ur.user_id
+    WHERE ur.role_id = #{roleId,jdbcType=INTEGER} AND u.states = #{states,jdbcType=INTEGER}
+    LIMIT #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+  <update id="updateStatesBatch" parameterType="java.util.List">
+    UPDATE users
+    <set>
+      <if test="states != null and states != ''">
+        states = #{states,jdbcType=INTEGER}
+      </if>
+    </set>
+    WHERE id in
+    <foreach collection="list" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </update>
+  <delete id="deleteBatch" parameterType="java.util.List">
+    DELETE FROM users
+    WHERE id in
+    <foreach collection="list" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+</mapper>

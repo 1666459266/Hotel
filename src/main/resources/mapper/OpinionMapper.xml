@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hotel.core.mapper.OpinionMapper">
+  <resultMap id="BaseResultMap" type="com.hotel.core.entity.Opinion">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="problem_type" jdbcType="VARCHAR" property="problemType" />
+    <result column="problem_description" jdbcType="VARCHAR" property="problemDescription" />
+    <result column="feedback_time" jdbcType="TIMESTAMP" property="feedbackTime" />
+    <result column="dispose_states" jdbcType="INTEGER" property="disposeStates" />
+    <result column="test1" jdbcType="VARCHAR" property="test1" />
+    <result column="test2" jdbcType="VARCHAR" property="test2" />
+    <result column="test3" jdbcType="VARCHAR" property="test3" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, username, problem_type, problem_description, feedback_time, dispose_states, 
+    test1, test2, test3
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from opinion
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from opinion
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hotel.core.entity.Opinion">
+    insert into opinion (id, user_id, username, 
+      problem_type, problem_description, feedback_time, 
+      dispose_states, test1, test2, 
+      test3)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
+      #{problemType,jdbcType=VARCHAR}, #{problemDescription,jdbcType=VARCHAR}, #{feedbackTime,jdbcType=TIMESTAMP}, 
+      #{disposeStates,jdbcType=INTEGER}, #{test1,jdbcType=VARCHAR}, #{test2,jdbcType=VARCHAR}, 
+      #{test3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hotel.core.entity.Opinion" useGeneratedKeys="true" keyProperty="id">
+    insert into opinion
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="problemType != null">
+        problem_type,
+      </if>
+      <if test="problemDescription != null">
+        problem_description,
+      </if>
+      <if test="feedbackTime != null">
+        feedback_time,
+      </if>
+      <if test="disposeStates != null">
+        dispose_states,
+      </if>
+      <if test="test1 != null">
+        test1,
+      </if>
+      <if test="test2 != null">
+        test2,
+      </if>
+      <if test="test3 != null">
+        test3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="problemType != null">
+        #{problemType,jdbcType=VARCHAR},
+      </if>
+      <if test="problemDescription != null">
+        #{problemDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackTime != null">
+        #{feedbackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="disposeStates != null">
+        #{disposeStates,jdbcType=INTEGER},
+      </if>
+      <if test="test1 != null">
+        #{test1,jdbcType=VARCHAR},
+      </if>
+      <if test="test2 != null">
+        #{test2,jdbcType=VARCHAR},
+      </if>
+      <if test="test3 != null">
+        #{test3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hotel.core.entity.Opinion">
+    update opinion
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="problemType != null">
+        problem_type = #{problemType,jdbcType=VARCHAR},
+      </if>
+      <if test="problemDescription != null">
+        problem_description = #{problemDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackTime != null">
+        feedback_time = #{feedbackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="disposeStates != null">
+        dispose_states = #{disposeStates,jdbcType=INTEGER},
+      </if>
+      <if test="test1 != null">
+        test1 = #{test1,jdbcType=VARCHAR},
+      </if>
+      <if test="test2 != null">
+        test2 = #{test2,jdbcType=VARCHAR},
+      </if>
+      <if test="test3 != null">
+        test3 = #{test3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hotel.core.entity.Opinion">
+    update opinion
+    set user_id = #{userId,jdbcType=INTEGER},
+      username = #{username,jdbcType=VARCHAR},
+      problem_type = #{problemType,jdbcType=VARCHAR},
+      problem_description = #{problemDescription,jdbcType=VARCHAR},
+      feedback_time = #{feedbackTime,jdbcType=TIMESTAMP},
+      dispose_states = #{disposeStates,jdbcType=INTEGER},
+      test1 = #{test1,jdbcType=VARCHAR},
+      test2 = #{test2,jdbcType=VARCHAR},
+      test3 = #{test3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectOpinionByLimit" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM opinion
+    <where>
+      <if test="disposeStates != null and disposeStates != ''">
+        dispose_states = #{disposeStates,jdbcType=INTEGER}
+      </if>
+    </where>
+    LIMIT #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+  <select id="selectCounts" resultType="int" parameterType="java.lang.Integer">
+    SELECT count(*)
+    FROM opinion
+    <where>
+      <if test="disposeStates != null and disposeStates != ''">
+        dispose_states = #{disposeStates,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+  <update id="updateOpinionByStates" parameterType="com.hotel.core.entity.Opinion">
+    UPDATE opinion
+    <set>
+      <if test="disposeStates != null and disposeStates != ''">
+        dispose_states = #{disposeStates,jdbcType=INTEGER}
+      </if>
+    </set>
+    WHERE id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateStatesBatch" parameterType="java.util.List">
+    UPDATE opinion
+    <set>
+      <if test="disposeStates != null and disposeStates != ''">
+        dispose_states = #{disposeStates,jdbcType=INTEGER}
+      </if>
+    </set>
+    WHERE id in
+    <foreach collection="list" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </update>
+  <delete id="deleteBatch" parameterType="java.util.List">
+    DELETE FROM opinion
+    WHERE id in
+    <foreach collection="list" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+</mapper>

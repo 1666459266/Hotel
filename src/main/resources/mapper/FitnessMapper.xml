@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hotel.core.mapper.FitnessMapper">
+  <resultMap id="BaseResultMap" type="com.hotel.core.entity.Fitness">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="equipment_name" jdbcType="VARCHAR" property="equipmentName" />
+    <result column="equipment_picture" jdbcType="VARCHAR" property="equipmentPicture" />
+    <result column="equipment_intro" jdbcType="VARCHAR" property="equipmentIntro" />
+    <result column="equipment_num" jdbcType="INTEGER" property="equipmentNum" />
+    <result column="equipment_usage" jdbcType="VARCHAR" property="equipmentUsage" />
+    <result column="creater_id" jdbcType="INTEGER" property="createrId" />
+    <result column="creater_username" jdbcType="VARCHAR" property="createrUsername" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modifier_id" jdbcType="INTEGER" property="modifierId" />
+    <result column="modifier_username" jdbcType="VARCHAR" property="modifierUsername" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="equipment_states" jdbcType="INTEGER" property="equipmentStates" />
+    <result column="exist_states" jdbcType="INTEGER" property="existStates" />
+    <result column="test1" jdbcType="VARCHAR" property="test1" />
+    <result column="test2" jdbcType="VARCHAR" property="test2" />
+    <result column="test3" jdbcType="VARCHAR" property="test3" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, equipment_name, equipment_picture, equipment_intro, equipment_num, equipment_usage, 
+    creater_id, creater_username, create_time, modifier_id, modifier_username, modify_time, 
+    equipment_states, exist_states, test1, test2, test3
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fitness
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from fitness
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hotel.core.entity.Fitness">
+    insert into fitness (id, equipment_name, equipment_picture, 
+      equipment_intro, equipment_num, equipment_usage, 
+      creater_id, creater_username, create_time, 
+      modifier_id, modifier_username, modify_time, 
+      equipment_states, exist_states, test1, 
+      test2, test3)
+    values (#{id,jdbcType=INTEGER}, #{equipmentName,jdbcType=VARCHAR}, #{equipmentPicture,jdbcType=VARCHAR}, 
+      #{equipmentIntro,jdbcType=VARCHAR}, #{equipmentNum,jdbcType=INTEGER}, #{equipmentUsage,jdbcType=VARCHAR}, 
+      #{createrId,jdbcType=INTEGER}, #{createrUsername,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifierId,jdbcType=INTEGER}, #{modifierUsername,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{equipmentStates,jdbcType=INTEGER}, #{existStates,jdbcType=INTEGER}, #{test1,jdbcType=VARCHAR}, 
+      #{test2,jdbcType=VARCHAR}, #{test3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hotel.core.entity.Fitness" useGeneratedKeys="true" keyProperty="id">
+    insert into fitness
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="equipmentName != null">
+        equipment_name,
+      </if>
+      <if test="equipmentPicture != null">
+        equipment_picture,
+      </if>
+      <if test="equipmentIntro != null">
+        equipment_intro,
+      </if>
+      <if test="equipmentNum != null">
+        equipment_num,
+      </if>
+      <if test="equipmentUsage != null">
+        equipment_usage,
+      </if>
+      <if test="createrId != null">
+        creater_id,
+      </if>
+      <if test="createrUsername != null">
+        creater_username,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifierId != null">
+        modifier_id,
+      </if>
+      <if test="modifierUsername != null">
+        modifier_username,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+      <if test="equipmentStates != null">
+        equipment_states,
+      </if>
+      <if test="existStates != null">
+        exist_states,
+      </if>
+      <if test="test1 != null">
+        test1,
+      </if>
+      <if test="test2 != null">
+        test2,
+      </if>
+      <if test="test3 != null">
+        test3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="equipmentName != null">
+        #{equipmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentPicture != null">
+        #{equipmentPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentIntro != null">
+        #{equipmentIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentNum != null">
+        #{equipmentNum,jdbcType=INTEGER},
+      </if>
+      <if test="equipmentUsage != null">
+        #{equipmentUsage,jdbcType=VARCHAR},
+      </if>
+      <if test="createrId != null">
+        #{createrId,jdbcType=INTEGER},
+      </if>
+      <if test="createrUsername != null">
+        #{createrUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null">
+        #{modifierId,jdbcType=INTEGER},
+      </if>
+      <if test="modifierUsername != null">
+        #{modifierUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="equipmentStates != null">
+        #{equipmentStates,jdbcType=INTEGER},
+      </if>
+      <if test="existStates != null">
+        #{existStates,jdbcType=INTEGER},
+      </if>
+      <if test="test1 != null">
+        #{test1,jdbcType=VARCHAR},
+      </if>
+      <if test="test2 != null">
+        #{test2,jdbcType=VARCHAR},
+      </if>
+      <if test="test3 != null">
+        #{test3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hotel.core.entity.Fitness">
+    update fitness
+    <set>
+      <if test="equipmentName != null">
+        equipment_name = #{equipmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentPicture != null">
+        equipment_picture = #{equipmentPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentIntro != null">
+        equipment_intro = #{equipmentIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentNum != null">
+        equipment_num = #{equipmentNum,jdbcType=INTEGER},
+      </if>
+      <if test="equipmentUsage != null">
+        equipment_usage = #{equipmentUsage,jdbcType=VARCHAR},
+      </if>
+      <if test="createrId != null">
+        creater_id = #{createrId,jdbcType=INTEGER},
+      </if>
+      <if test="createrUsername != null">
+        creater_username = #{createrUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null">
+        modifier_id = #{modifierId,jdbcType=INTEGER},
+      </if>
+      <if test="modifierUsername != null">
+        modifier_username = #{modifierUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="equipmentStates != null">
+        equipment_states = #{equipmentStates,jdbcType=INTEGER},
+      </if>
+      <if test="existStates != null">
+        exist_states = #{existStates,jdbcType=INTEGER},
+      </if>
+      <if test="test1 != null">
+        test1 = #{test1,jdbcType=VARCHAR},
+      </if>
+      <if test="test2 != null">
+        test2 = #{test2,jdbcType=VARCHAR},
+      </if>
+      <if test="test3 != null">
+        test3 = #{test3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hotel.core.entity.Fitness">
+    update fitness
+    set equipment_name = #{equipmentName,jdbcType=VARCHAR},
+      equipment_picture = #{equipmentPicture,jdbcType=VARCHAR},
+      equipment_intro = #{equipmentIntro,jdbcType=VARCHAR},
+      equipment_num = #{equipmentNum,jdbcType=INTEGER},
+      equipment_usage = #{equipmentUsage,jdbcType=VARCHAR},
+      creater_id = #{createrId,jdbcType=INTEGER},
+      creater_username = #{createrUsername,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modifier_id = #{modifierId,jdbcType=INTEGER},
+      modifier_username = #{modifierUsername,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      equipment_states = #{equipmentStates,jdbcType=INTEGER},
+      exist_states = #{existStates,jdbcType=INTEGER},
+      test1 = #{test1,jdbcType=VARCHAR},
+      test2 = #{test2,jdbcType=VARCHAR},
+      test3 = #{test3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectFitnessByLimit" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM fitness
+    <where>
+      <if test="existStates != null and existStates != ''">
+        exist_states = #{existStates,jdbcType=INTEGER}
+      </if>
+    </where>
+    LIMIT #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+  <select id="selectCounts" resultType="int" parameterType="java.lang.Integer">
+    SELECT count(*)
+    FROM fitness
+    <where>
+      <if test="existStates != null and existStates != ''">
+        exist_states = #{existStates,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+  <update id="updateFitnessByStates" parameterType="com.hotel.core.entity.Fitness">
+    UPDATE fitness
+    <set>
+      <if test="existStates != null and existStates != ''">
+        exist_states = #{existStates,jdbcType=INTEGER}
+      </if>
+    </set>
+    WHERE id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateStatesBatch" parameterType="java.util.List">
+    UPDATE fitness
+    <set>
+      <if test="existStates != null and existStates != ''">
+        exist_states = #{existStates,jdbcType=INTEGER}
+      </if>
+    </set>
+    WHERE id in
+    <foreach collection="list" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </update>
+  <delete id="deleteBatch" parameterType="java.util.List">
+    DELETE FROM fitness
+    WHERE id in
+    <foreach collection="list" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+</mapper>

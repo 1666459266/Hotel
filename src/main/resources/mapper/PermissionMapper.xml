@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hotel.core.mapper.PermissionMapper">
+  <resultMap id="BaseResultMap" type="com.hotel.core.entity.Permission">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="permission_name" jdbcType="VARCHAR" property="permissionName" />
+    <result column="permission_describe" jdbcType="VARCHAR" property="permissionDescribe" />
+    <result column="permission_key" jdbcType="VARCHAR" property="permissionKey" />
+    <result column="permission_value" jdbcType="VARCHAR" property="permissionValue" />
+    <result column="parent_permission_id" jdbcType="INTEGER" property="parentPermissionId" />
+    <result column="parent_sort" jdbcType="INTEGER" property="parentSort" />
+    <result column="permission_states" jdbcType="INTEGER" property="permissionStates" />
+    <result column="test1" jdbcType="VARCHAR" property="test1" />
+    <result column="test2" jdbcType="VARCHAR" property="test2" />
+    <result column="test3" jdbcType="VARCHAR" property="test3" />
+    <collection property="permissions" ofType="com.hotel.core.entity.Permission" column="id" select="findMenuByParentId"></collection>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, permission_name, permission_describe, permission_key, permission_value, parent_permission_id, 
+    parent_sort, permission_states, test1, test2, test3
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from permission
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from permission
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hotel.core.entity.Permission">
+    insert into permission (id, permission_name, permission_describe, 
+      permission_key, permission_value, parent_permission_id, 
+      parent_sort, permission_states, test1, 
+      test2, test3)
+    values (#{id,jdbcType=INTEGER}, #{permissionName,jdbcType=VARCHAR}, #{permissionDescribe,jdbcType=VARCHAR}, 
+      #{permissionKey,jdbcType=VARCHAR}, #{permissionValue,jdbcType=VARCHAR}, #{parentPermissionId,jdbcType=INTEGER}, 
+      #{parentSort,jdbcType=INTEGER}, #{permissionStates,jdbcType=INTEGER}, #{test1,jdbcType=VARCHAR}, 
+      #{test2,jdbcType=VARCHAR}, #{test3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hotel.core.entity.Permission" useGeneratedKeys="true" keyProperty="id">
+    insert into permission
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="permissionName != null">
+        permission_name,
+      </if>
+      <if test="permissionDescribe != null">
+        permission_describe,
+      </if>
+      <if test="permissionKey != null">
+        permission_key,
+      </if>
+      <if test="permissionValue != null">
+        permission_value,
+      </if>
+      <if test="parentPermissionId != null">
+        parent_permission_id,
+      </if>
+      <if test="parentSort != null">
+        parent_sort,
+      </if>
+      <if test="permissionStates != null">
+        permission_states,
+      </if>
+      <if test="test1 != null">
+        test1,
+      </if>
+      <if test="test2 != null">
+        test2,
+      </if>
+      <if test="test3 != null">
+        test3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="permissionName != null">
+        #{permissionName,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionDescribe != null">
+        #{permissionDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionKey != null">
+        #{permissionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionValue != null">
+        #{permissionValue,jdbcType=VARCHAR},
+      </if>
+      <if test="parentPermissionId != null">
+        #{parentPermissionId,jdbcType=INTEGER},
+      </if>
+      <if test="parentSort != null">
+        #{parentSort,jdbcType=INTEGER},
+      </if>
+      <if test="permissionStates != null">
+        #{permissionStates,jdbcType=INTEGER},
+      </if>
+      <if test="test1 != null">
+        #{test1,jdbcType=VARCHAR},
+      </if>
+      <if test="test2 != null">
+        #{test2,jdbcType=VARCHAR},
+      </if>
+      <if test="test3 != null">
+        #{test3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hotel.core.entity.Permission">
+    update permission
+    <set>
+      <if test="permissionName != null">
+        permission_name = #{permissionName,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionDescribe != null">
+        permission_describe = #{permissionDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionKey != null">
+        permission_key = #{permissionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionValue != null">
+        permission_value = #{permissionValue,jdbcType=VARCHAR},
+      </if>
+      <if test="parentPermissionId != null">
+        parent_permission_id = #{parentPermissionId,jdbcType=INTEGER},
+      </if>
+      <if test="parentSort != null">
+        parent_sort = #{parentSort,jdbcType=INTEGER},
+      </if>
+      <if test="permissionStates != null">
+        permission_states = #{permissionStates,jdbcType=INTEGER},
+      </if>
+      <if test="test1 != null">
+        test1 = #{test1,jdbcType=VARCHAR},
+      </if>
+      <if test="test2 != null">
+        test2 = #{test2,jdbcType=VARCHAR},
+      </if>
+      <if test="test3 != null">
+        test3 = #{test3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hotel.core.entity.Permission">
+    update permission
+    set permission_name = #{permissionName,jdbcType=VARCHAR},
+      permission_describe = #{permissionDescribe,jdbcType=VARCHAR},
+      permission_key = #{permissionKey,jdbcType=VARCHAR},
+      permission_value = #{permissionValue,jdbcType=VARCHAR},
+      parent_permission_id = #{parentPermissionId,jdbcType=INTEGER},
+      parent_sort = #{parentSort,jdbcType=INTEGER},
+      permission_states = #{permissionStates,jdbcType=INTEGER},
+      test1 = #{test1,jdbcType=VARCHAR},
+      test2 = #{test2,jdbcType=VARCHAR},
+      test3 = #{test3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectPermissionBySortAsc" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM permission
+    WHERE permission_states = 1
+    ORDER BY parent_sort ASC
+  </select>
+  <select id="selectPermissionListBySortAscLimit" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM permission
+    <where>
+      <if test="permissionStates != null and permissionStates != ''">
+        permission_states = #{permissionStates,jdbcType=INTEGER}
+      </if>
+    </where>
+    ORDER BY parent_sort ASC
+    LIMIT #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+  <select id="selectCounts" resultType="int" parameterType="java.lang.Integer">
+    SELECT count(*)
+    FROM permission
+    <where>
+      <if test="permissionStates != null and permissionStates != ''">
+        permission_states = #{permissionStates,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+  <update id="updatePermissionByStates" parameterType="com.hotel.core.entity.Permission">
+    UPDATE permission
+    <set>
+      <if test="permissionStates != null and permissionStates != ''">
+        permission_states = #{permissionStates,jdbcType=INTEGER}
+      </if>
+    </set>
+    WHERE id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getPermissionByRoleName" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT * FROM permission p
+    LEFT JOIN role_permission rp ON rp.permission_id = p.id
+    LEFT JOIN role r ON rp.role_id = r.id
+    WHERE p.parent_permission_id = 0
+    AND r.role_name = #{roleName}
+  </select>
+  <select id="findMenuByParentId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    SELECT * FROM permission p
+    WHERE p.parent_permission_id = #{id}
+  </select>
+  <select id="searchPermission" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM permission
+    <where>
+      <if test="permissionName != null and permissionName != ''">
+        AND permission_name LIKE "%"#{permissionName,jdbcType=VARCHAR}"%"
+      </if>
+      <if test="permissionDescribe != null and permissionDescribe != ''">
+        AND permission_describe LIKE "%"#{permissionDescribe,jdbcType=VARCHAR}"%"
+      </if>
+      AND permission_states = 1
+    </where>
+  </select>
+  <select id="selectPermissionListByRoleId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    SELECT * FROM role_permission rp
+    LEFT JOIN role r ON rp.role_id = r.id
+    WHERE r.id = #{id,jdbcType=INTEGER}
+  </select>
+  <update id="updateStatesBatch" parameterType="java.util.List">
+    UPDATE permission
+    <set>
+      <if test="states != null and states != ''">
+        permission_states = #{states,jdbcType=INTEGER}
+      </if>
+    </set>
+    WHERE id in
+    <foreach collection="list" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </update>
+  <delete id="deleteBatch" parameterType="java.util.List">
+    DELETE FROM permission
+    WHERE id in
+    <foreach collection="list" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+</mapper>

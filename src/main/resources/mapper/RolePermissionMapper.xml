@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hotel.core.mapper.RolePermissionMapper">
+  <resultMap id="BaseResultMap" type="com.hotel.core.entity.RolePermission">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="permission_id" jdbcType="INTEGER" property="permissionId" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="role_describe" jdbcType="VARCHAR" property="roleDescribe" />
+    <result column="permission_name" jdbcType="VARCHAR" property="permissionName" />
+    <result column="permission_describe" jdbcType="VARCHAR" property="permissionDescribe" />
+    <result column="test1" jdbcType="VARCHAR" property="test1" />
+    <result column="test2" jdbcType="VARCHAR" property="test2" />
+    <result column="test3" jdbcType="VARCHAR" property="test3" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, role_id, permission_id, role_name, role_describe, permission_name, permission_describe, 
+    test1, test2, test3
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from role_permission
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from role_permission
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hotel.core.entity.RolePermission">
+    insert into role_permission (id, role_id, permission_id, 
+      role_name, role_describe, permission_name, 
+      permission_describe, test1, test2, 
+      test3)
+    values (#{id,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, #{permissionId,jdbcType=INTEGER}, 
+      #{roleName,jdbcType=VARCHAR}, #{roleDescribe,jdbcType=VARCHAR}, #{permissionName,jdbcType=VARCHAR}, 
+      #{permissionDescribe,jdbcType=VARCHAR}, #{test1,jdbcType=VARCHAR}, #{test2,jdbcType=VARCHAR}, 
+      #{test3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hotel.core.entity.RolePermission" useGeneratedKeys="true" keyProperty="id">
+    insert into role_permission
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="permissionId != null">
+        permission_id,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="roleDescribe != null">
+        role_describe,
+      </if>
+      <if test="permissionName != null">
+        permission_name,
+      </if>
+      <if test="permissionDescribe != null">
+        permission_describe,
+      </if>
+      <if test="test1 != null">
+        test1,
+      </if>
+      <if test="test2 != null">
+        test2,
+      </if>
+      <if test="test3 != null">
+        test3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="permissionId != null">
+        #{permissionId,jdbcType=INTEGER},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleDescribe != null">
+        #{roleDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionName != null">
+        #{permissionName,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionDescribe != null">
+        #{permissionDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="test1 != null">
+        #{test1,jdbcType=VARCHAR},
+      </if>
+      <if test="test2 != null">
+        #{test2,jdbcType=VARCHAR},
+      </if>
+      <if test="test3 != null">
+        #{test3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hotel.core.entity.RolePermission">
+    update role_permission
+    <set>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="permissionId != null">
+        permission_id = #{permissionId,jdbcType=INTEGER},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleDescribe != null">
+        role_describe = #{roleDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionName != null">
+        permission_name = #{permissionName,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionDescribe != null">
+        permission_describe = #{permissionDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="test1 != null">
+        test1 = #{test1,jdbcType=VARCHAR},
+      </if>
+      <if test="test2 != null">
+        test2 = #{test2,jdbcType=VARCHAR},
+      </if>
+      <if test="test3 != null">
+        test3 = #{test3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hotel.core.entity.RolePermission">
+    update role_permission
+    set role_id = #{roleId,jdbcType=INTEGER},
+      permission_id = #{permissionId,jdbcType=INTEGER},
+      role_name = #{roleName,jdbcType=VARCHAR},
+      role_describe = #{roleDescribe,jdbcType=VARCHAR},
+      permission_name = #{permissionName,jdbcType=VARCHAR},
+      permission_describe = #{permissionDescribe,jdbcType=VARCHAR},
+      test1 = #{test1,jdbcType=VARCHAR},
+      test2 = #{test2,jdbcType=VARCHAR},
+      test3 = #{test3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectRolePermissionList" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM role_permission
+  </select>
+  <select id="selectCounts" resultType="int">
+    SELECT count(*)
+    FROM role_permission
+  </select>
+  <delete id="deleteRolePermissionByRoleId" parameterType="java.lang.Integer">
+    DELETE
+    FROM role_permission
+    WHERE role_id = #{roleId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteBatch" parameterType="java.util.List">
+    DELETE FROM role_permission
+    WHERE id in
+    <foreach collection="list" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+</mapper>

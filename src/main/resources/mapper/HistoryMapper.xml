@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hotel.core.mapper.HistoryMapper">
+  <resultMap id="BaseResultMap" type="com.hotel.core.entity.History">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="history_picture" jdbcType="VARCHAR" property="historyPicture" />
+    <result column="history_intro" jdbcType="VARCHAR" property="historyIntro" />
+    <result column="creater_id" jdbcType="INTEGER" property="createrId" />
+    <result column="creater_username" jdbcType="VARCHAR" property="createrUsername" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modifier_id" jdbcType="INTEGER" property="modifierId" />
+    <result column="modifier_username" jdbcType="VARCHAR" property="modifierUsername" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="exist_states" jdbcType="INTEGER" property="existStates" />
+    <result column="test1" jdbcType="VARCHAR" property="test1" />
+    <result column="test2" jdbcType="VARCHAR" property="test2" />
+    <result column="test3" jdbcType="VARCHAR" property="test3" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, history_picture, history_intro, creater_id, creater_username, create_time, modifier_id, 
+    modifier_username, modify_time, exist_states, test1, test2, test3
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from history
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from history
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hotel.core.entity.History">
+    insert into history (id, history_picture, history_intro, 
+      creater_id, creater_username, create_time, 
+      modifier_id, modifier_username, modify_time, 
+      exist_states, test1, test2, 
+      test3)
+    values (#{id,jdbcType=INTEGER}, #{historyPicture,jdbcType=VARCHAR}, #{historyIntro,jdbcType=VARCHAR}, 
+      #{createrId,jdbcType=INTEGER}, #{createrUsername,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifierId,jdbcType=INTEGER}, #{modifierUsername,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{existStates,jdbcType=INTEGER}, #{test1,jdbcType=VARCHAR}, #{test2,jdbcType=VARCHAR}, 
+      #{test3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hotel.core.entity.History" useGeneratedKeys="true" keyProperty="id">
+    insert into history
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="historyPicture != null">
+        history_picture,
+      </if>
+      <if test="historyIntro != null">
+        history_intro,
+      </if>
+      <if test="createrId != null">
+        creater_id,
+      </if>
+      <if test="createrUsername != null">
+        creater_username,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifierId != null">
+        modifier_id,
+      </if>
+      <if test="modifierUsername != null">
+        modifier_username,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+      <if test="existStates != null">
+        exist_states,
+      </if>
+      <if test="test1 != null">
+        test1,
+      </if>
+      <if test="test2 != null">
+        test2,
+      </if>
+      <if test="test3 != null">
+        test3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="historyPicture != null">
+        #{historyPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="historyIntro != null">
+        #{historyIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="createrId != null">
+        #{createrId,jdbcType=INTEGER},
+      </if>
+      <if test="createrUsername != null">
+        #{createrUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null">
+        #{modifierId,jdbcType=INTEGER},
+      </if>
+      <if test="modifierUsername != null">
+        #{modifierUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="existStates != null">
+        #{existStates,jdbcType=INTEGER},
+      </if>
+      <if test="test1 != null">
+        #{test1,jdbcType=VARCHAR},
+      </if>
+      <if test="test2 != null">
+        #{test2,jdbcType=VARCHAR},
+      </if>
+      <if test="test3 != null">
+        #{test3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hotel.core.entity.History">
+    update history
+    <set>
+      <if test="historyPicture != null">
+        history_picture = #{historyPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="historyIntro != null">
+        history_intro = #{historyIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="createrId != null">
+        creater_id = #{createrId,jdbcType=INTEGER},
+      </if>
+      <if test="createrUsername != null">
+        creater_username = #{createrUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null">
+        modifier_id = #{modifierId,jdbcType=INTEGER},
+      </if>
+      <if test="modifierUsername != null">
+        modifier_username = #{modifierUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="existStates != null">
+        exist_states = #{existStates,jdbcType=INTEGER},
+      </if>
+      <if test="test1 != null">
+        test1 = #{test1,jdbcType=VARCHAR},
+      </if>
+      <if test="test2 != null">
+        test2 = #{test2,jdbcType=VARCHAR},
+      </if>
+      <if test="test3 != null">
+        test3 = #{test3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hotel.core.entity.History">
+    update history
+    set history_picture = #{historyPicture,jdbcType=VARCHAR},
+      history_intro = #{historyIntro,jdbcType=VARCHAR},
+      creater_id = #{createrId,jdbcType=INTEGER},
+      creater_username = #{createrUsername,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modifier_id = #{modifierId,jdbcType=INTEGER},
+      modifier_username = #{modifierUsername,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      exist_states = #{existStates,jdbcType=INTEGER},
+      test1 = #{test1,jdbcType=VARCHAR},
+      test2 = #{test2,jdbcType=VARCHAR},
+      test3 = #{test3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectHistoryByLimit" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM history
+    <where>
+      <if test="existStates != null and existStates != ''">
+        exist_states = #{existStates,jdbcType=INTEGER}
+      </if>
+    </where>
+    LIMIT #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+  <select id="selectCounts" resultType="int" parameterType="java.lang.Integer">
+    SELECT count(*)
+    FROM history
+    <where>
+      <if test="existStates != null and existStates != ''">
+        exist_states = #{existStates,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+  <update id="updateHistoryByStates" parameterType="com.hotel.core.entity.History">
+    UPDATE history
+    <set>
+      <if test="existStates != null and existStates != ''">
+        exist_states = #{existStates,jdbcType=INTEGER}
+      </if>
+    </set>
+    WHERE id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateStatesBatch" parameterType="java.util.List">
+    UPDATE history
+    <set>
+      <if test="existStates != null and existStates != ''">
+        exist_states = #{existStates,jdbcType=INTEGER}
+      </if>
+    </set>
+    WHERE id in
+    <foreach collection="list" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </update>
+  <delete id="deleteBatch" parameterType="java.util.List">
+    DELETE FROM history
+    WHERE id in
+    <foreach collection="list" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+</mapper>

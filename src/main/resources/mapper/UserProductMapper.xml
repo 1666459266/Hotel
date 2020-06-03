@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hotel.core.mapper.UserProductMapper">
+  <resultMap id="BaseResultMap" type="com.hotel.core.entity.UserProduct">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="product_price" jdbcType="VARCHAR" property="productPrice" />
+    <result column="product_num" jdbcType="INTEGER" property="productNum" />
+    <result column="order_time" jdbcType="TIMESTAMP" property="orderTime" />
+    <result column="order_overdue_states" jdbcType="INTEGER" property="orderOverdueStates" />
+    <result column="order_states" jdbcType="INTEGER" property="orderStates" />
+    <result column="test1" jdbcType="VARCHAR" property="test1" />
+    <result column="test2" jdbcType="VARCHAR" property="test2" />
+    <result column="test3" jdbcType="VARCHAR" property="test3" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, product_id, order_number, username, product_name, product_price, product_num, 
+    order_time, order_overdue_states, order_states, test1, test2, test3
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_product
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_product
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hotel.core.entity.UserProduct">
+    insert into user_product (id, user_id, product_id, 
+      order_number, username, product_name, 
+      product_price, product_num, order_time, 
+      order_overdue_states, order_states, test1, 
+      test2, test3)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, 
+      #{orderNumber,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR},
+      #{productPrice,jdbcType=VARCHAR}, #{productNum,jdbcType=INTEGER}, #{orderTime,jdbcType=TIMESTAMP}, 
+      #{orderOverdueStates,jdbcType=INTEGER}, #{orderStates,jdbcType=INTEGER}, #{test1,jdbcType=VARCHAR}, 
+      #{test2,jdbcType=VARCHAR}, #{test3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hotel.core.entity.UserProduct" useGeneratedKeys="true" keyProperty="id">
+    insert into user_product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="orderNumber != null">
+        order_number,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="productName != null">
+        product_name,
+      </if>
+      <if test="productPrice != null">
+        product_price,
+      </if>
+      <if test="productNum != null">
+        product_num,
+      </if>
+      <if test="orderTime != null">
+        order_time,
+      </if>
+      <if test="orderOverdueStates != null">
+        order_overdue_states,
+      </if>
+      <if test="orderStates != null">
+        order_states,
+      </if>
+      <if test="test1 != null">
+        test1,
+      </if>
+      <if test="test2 != null">
+        test2,
+      </if>
+      <if test="test3 != null">
+        test3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNumber != null">
+        #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productPrice != null">
+        #{productPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="productNum != null">
+        #{productNum,jdbcType=INTEGER},
+      </if>
+      <if test="orderTime != null">
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderOverdueStates != null">
+        #{orderOverdueStates,jdbcType=INTEGER},
+      </if>
+      <if test="orderStates != null">
+        #{orderStates,jdbcType=INTEGER},
+      </if>
+      <if test="test1 != null">
+        #{test1,jdbcType=VARCHAR},
+      </if>
+      <if test="test2 != null">
+        #{test2,jdbcType=VARCHAR},
+      </if>
+      <if test="test3 != null">
+        #{test3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hotel.core.entity.UserProduct">
+    update user_product
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNumber != null">
+        order_number = #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productPrice != null">
+        product_price = #{productPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="productNum != null">
+        product_num = #{productNum,jdbcType=INTEGER},
+      </if>
+      <if test="orderTime != null">
+        order_time = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderOverdueStates != null">
+        order_overdue_states = #{orderOverdueStates,jdbcType=INTEGER},
+      </if>
+      <if test="orderStates != null">
+        order_states = #{orderStates,jdbcType=INTEGER},
+      </if>
+      <if test="test1 != null">
+        test1 = #{test1,jdbcType=VARCHAR},
+      </if>
+      <if test="test2 != null">
+        test2 = #{test2,jdbcType=VARCHAR},
+      </if>
+      <if test="test3 != null">
+        test3 = #{test3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hotel.core.entity.UserProduct">
+    update user_product
+    set user_id = #{userId,jdbcType=INTEGER},
+      product_id = #{productId,jdbcType=INTEGER},
+      order_number = #{orderNumber,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      product_name = #{productName,jdbcType=VARCHAR},
+      product_price = #{productPrice,jdbcType=VARCHAR},
+      product_num = #{productNum,jdbcType=INTEGER},
+      order_time = #{orderTime,jdbcType=TIMESTAMP},
+      order_overdue_states = #{orderOverdueStates,jdbcType=INTEGER},
+      order_states = #{orderStates,jdbcType=INTEGER},
+      test1 = #{test1,jdbcType=VARCHAR},
+      test2 = #{test2,jdbcType=VARCHAR},
+      test3 = #{test3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectUserProductListByLimit" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM user_product
+    LIMIT #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+  <select id="selectCounts" resultType="int">
+    SELECT count(*)
+    FROM user_product
+  </select>
+  <update id="cancel" parameterType="com.hotel.core.entity.UserProduct">
+    UPDATE user_product
+    <set>
+      <if test="orderOverdueStates != null and orderOverdueStates != ''">
+        order_overdue_states = #{orderOverdueStates,jdbcType=INTEGER}
+      </if>
+    </set>
+    WHERE id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="searchUserProduct" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM user_product
+    <where>
+      <if test="orderNumber != null and orderNumber != ''">
+        AND order_number LIKE "%"#{orderNumber,jdbcType=VARCHAR}"%"
+      </if>
+      <if test="username != null and username != ''">
+        AND username LIKE "%"#{username,jdbcType=VARCHAR}"%"
+      </if>
+    </where>
+  </select>
+  <select id="selectPaidUserProduct" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM user_product
+    <where>
+      <if test="orderStates != null and orderStates != ''">
+        order_states = #{orderStates,jdbcType=INTEGER}
+      </if>
+    </where>
+    LIMIT #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+  <select id="selectUnPaidUserProduct" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM user_product
+    <where>
+      <if test="orderStates != null and orderStates != ''">
+        order_states = #{orderStates,jdbcType=INTEGER}
+      </if>
+    </where>
+    LIMIT #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+  <select id="selectUserProductListByOrderTimeSortDesc" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM user_product
+    ORDER BY order_time DESC
+    LIMIT #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+  <select id="selectUserProductListByOrderTimeSortAsc" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM user_product
+    ORDER BY order_time ASC
+    LIMIT #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+  <select id="selectUserProductListByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM user_product
+    WHERE user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <select id="selectUserProductListByUserIdAndTime" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM user_product
+    WHERE user_id = #{userId,jdbcType=INTEGER} AND order_time BETWEEN #{start,jdbcType=DATE} AND #{end,jdbcType=DATE}
+    ORDER BY order_time ASC
+  </select>
+  <select id="selectUserProductListByTime" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM user_product
+    WHERE order_time BETWEEN #{start,jdbcType=DATE} AND #{end,jdbcType=DATE}
+    ORDER BY order_time ASC
+  </select>
+  <select id="selectUserPriceByDay" resultType="map">
+    SELECT
+    DATE_FORMAT(order_time,'%Y-%m-%d') AS order_time,SUM(product_price*product_num) AS price
+    FROM user_product
+    WHERE user_id = #{userId,jdbcType=INTEGER} AND order_time BETWEEN #{start,jdbcType=DATE} AND #{end,jdbcType=DATE}
+    GROUP BY DAY(order_time)
+    ORDER BY order_time ASC
+  </select>
+  <select id="selectUserPriceByMonth" resultType="map">
+    SELECT
+    DATE_FORMAT(order_time,'%Y-%m') AS order_time,SUM(product_price*product_num) AS price
+    FROM user_product
+    WHERE user_id = #{userId,jdbcType=INTEGER} AND order_time BETWEEN #{start,jdbcType=DATE} AND #{end,jdbcType=DATE}
+    GROUP BY DAY(order_time)
+    ORDER BY order_time ASC
+  </select>
+  <select id="selectUserPriceByYear" resultType="map">
+    SELECT
+    DATE_FORMAT(order_time,'%Y') AS order_time,SUM(product_price*product_num) AS price
+    FROM user_product
+    WHERE user_id = #{userId,jdbcType=INTEGER} AND order_time BETWEEN #{start,jdbcType=DATE} AND #{end,jdbcType=DATE}
+    GROUP BY DAY(order_time)
+    ORDER BY order_time ASC
+  </select>
+  <select id="selectCountsByDay" resultType="map" parameterType="java.util.Date">
+    SELECT
+    DATE_FORMAT(order_time,'%Y-%m-%d') AS order_time,COUNT(id) AS counts
+    FROM user_product
+    WHERE order_time BETWEEN #{start,jdbcType=DATE} AND #{end,jdbcType=DATE}
+    GROUP BY DAY(order_time)
+    ORDER BY order_time ASC
+  </select>
+  <select id="selectPriceByDay" resultType="map" parameterType="java.util.Date">
+    SELECT
+    DATE_FORMAT(order_time,'%Y-%m-%d') AS order_time,SUM(product_price*product_num) AS price
+    FROM user_product
+    WHERE order_time BETWEEN #{start,jdbcType=DATE} AND #{end,jdbcType=DATE}
+    GROUP BY DAY(order_time)
+    ORDER BY order_time ASC
+  </select>
+  <select id="selectCountsByMonth" resultType="map" parameterType="java.util.Date">
+    SELECT
+    DATE_FORMAT(order_time,'%Y-%m') AS order_time,COUNT(id) AS counts
+    FROM user_product
+    WHERE order_time BETWEEN #{start,jdbcType=DATE} AND #{end,jdbcType=DATE}
+    GROUP BY MONTH(order_time)
+    ORDER BY order_time ASC
+  </select>
+  <select id="selectPriceByMonth" resultType="map" parameterType="java.util.Date">
+    SELECT
+    DATE_FORMAT(order_time,'%Y-%m') AS order_time,SUM(product_price*product_num) AS price
+    FROM user_product
+    WHERE order_time BETWEEN #{start,jdbcType=DATE} AND #{end,jdbcType=DATE}
+    GROUP BY MONTH(order_time)
+    ORDER BY order_time ASC
+  </select>
+  <select id="selectCountsByYear" resultType="map" parameterType="java.util.Date">
+    SELECT
+    DATE_FORMAT(order_time,'%Y') AS order_time,COUNT(id) AS counts
+    FROM user_product
+    WHERE order_time BETWEEN #{start,jdbcType=DATE} AND #{end,jdbcType=DATE}
+    GROUP BY YEAR(order_time)
+    ORDER BY order_time ASC
+  </select>
+  <select id="selectPriceByYear" resultType="map" parameterType="java.util.Date">
+    SELECT
+    DATE_FORMAT(order_time,'%Y') AS order_time,SUM(product_price*product_num) AS price
+    FROM user_product
+    WHERE order_time BETWEEN #{start,jdbcType=DATE} AND #{end,jdbcType=DATE}
+    GROUP BY YEAR(order_time)
+    ORDER BY order_time ASC
+  </select>
+  <delete id="deleteBatch" parameterType="java.util.List">
+    DELETE FROM user_product
+    WHERE id in
+    <foreach collection="list" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+
+
+</mapper>

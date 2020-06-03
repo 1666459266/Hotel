@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hotel.core.mapper.RestaurantMapper">
+  <resultMap id="BaseResultMap" type="com.hotel.core.entity.Restaurant">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="restaurant_type" jdbcType="VARCHAR" property="restaurantType" />
+    <result column="restaurant_picture" jdbcType="VARCHAR" property="restaurantPicture" />
+    <result column="restaurant_intro" jdbcType="VARCHAR" property="restaurantIntro" />
+    <result column="food_name" jdbcType="VARCHAR" property="foodName" />
+    <result column="food_unit_price" jdbcType="VARCHAR" property="foodUnitPrice" />
+    <result column="food_popularity" jdbcType="INTEGER" property="foodPopularity" />
+    <result column="food_num" jdbcType="INTEGER" property="foodNum" />
+    <result column="register_date" jdbcType="DATE" property="registerDate" />
+    <result column="creater_id" jdbcType="INTEGER" property="createrId" />
+    <result column="creater_username" jdbcType="VARCHAR" property="createrUsername" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modifier_id" jdbcType="INTEGER" property="modifierId" />
+    <result column="modifier_username" jdbcType="VARCHAR" property="modifierUsername" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="food_instock" jdbcType="INTEGER" property="foodInstock" />
+    <result column="food_states" jdbcType="INTEGER" property="foodStates" />
+    <result column="test1" jdbcType="VARCHAR" property="test1" />
+    <result column="test2" jdbcType="VARCHAR" property="test2" />
+    <result column="test3" jdbcType="VARCHAR" property="test3" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, restaurant_type, restaurant_picture, restaurant_intro, food_name, food_unit_price, 
+    food_popularity, food_num, register_date, creater_id, creater_username, create_time, 
+    modifier_id, modifier_username, modify_time, food_instock, food_states, test1, test2, 
+    test3
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from restaurant
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from restaurant
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hotel.core.entity.Restaurant">
+    insert into restaurant (id, restaurant_type, restaurant_picture, 
+      restaurant_intro, food_name, food_unit_price, 
+      food_popularity, food_num, register_date, 
+      creater_id, creater_username, create_time, 
+      modifier_id, modifier_username, modify_time, 
+      food_instock, food_states, test1, 
+      test2, test3)
+    values (#{id,jdbcType=INTEGER}, #{restaurantType,jdbcType=VARCHAR}, #{restaurantPicture,jdbcType=VARCHAR}, 
+      #{restaurantIntro,jdbcType=VARCHAR}, #{foodName,jdbcType=VARCHAR}, #{foodUnitPrice,jdbcType=VARCHAR}, 
+      #{foodPopularity,jdbcType=INTEGER}, #{foodNum,jdbcType=INTEGER}, #{registerDate,jdbcType=DATE},
+      #{createrId,jdbcType=INTEGER}, #{createrUsername,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifierId,jdbcType=INTEGER}, #{modifierUsername,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{foodInstock,jdbcType=INTEGER}, #{foodStates,jdbcType=INTEGER}, #{test1,jdbcType=VARCHAR}, 
+      #{test2,jdbcType=VARCHAR}, #{test3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hotel.core.entity.Restaurant" useGeneratedKeys="true" keyProperty="id">
+    insert into restaurant
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="restaurantType != null">
+        restaurant_type,
+      </if>
+      <if test="restaurantPicture != null">
+        restaurant_picture,
+      </if>
+      <if test="restaurantIntro != null">
+        restaurant_intro,
+      </if>
+      <if test="foodName != null">
+        food_name,
+      </if>
+      <if test="foodUnitPrice != null">
+        food_unit_price,
+      </if>
+      <if test="foodPopularity != null">
+        food_popularity,
+      </if>
+      <if test="foodNum != null">
+        food_num,
+      </if>
+      <if test="registerDate != null">
+        register_date,
+      </if>
+      <if test="createrId != null">
+        creater_id,
+      </if>
+      <if test="createrUsername != null">
+        creater_username,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifierId != null">
+        modifier_id,
+      </if>
+      <if test="modifierUsername != null">
+        modifier_username,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+      <if test="foodInstock != null">
+        food_instock,
+      </if>
+      <if test="foodStates != null">
+        food_states,
+      </if>
+      <if test="test1 != null">
+        test1,
+      </if>
+      <if test="test2 != null">
+        test2,
+      </if>
+      <if test="test3 != null">
+        test3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="restaurantType != null">
+        #{restaurantType,jdbcType=VARCHAR},
+      </if>
+      <if test="restaurantPicture != null">
+        #{restaurantPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="restaurantIntro != null">
+        #{restaurantIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="foodName != null">
+        #{foodName,jdbcType=VARCHAR},
+      </if>
+      <if test="foodUnitPrice != null">
+        #{foodUnitPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="foodPopularity != null">
+        #{foodPopularity,jdbcType=INTEGER},
+      </if>
+      <if test="foodNum != null">
+        #{foodNum,jdbcType=INTEGER},
+      </if>
+      <if test="registerDate != null">
+        #{registerDate,jdbcType=DATE},
+      </if>
+      <if test="createrId != null">
+        #{createrId,jdbcType=INTEGER},
+      </if>
+      <if test="createrUsername != null">
+        #{createrUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null">
+        #{modifierId,jdbcType=INTEGER},
+      </if>
+      <if test="modifierUsername != null">
+        #{modifierUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="foodInstock != null">
+        #{foodInstock,jdbcType=INTEGER},
+      </if>
+      <if test="foodStates != null">
+        #{foodStates,jdbcType=INTEGER},
+      </if>
+      <if test="test1 != null">
+        #{test1,jdbcType=VARCHAR},
+      </if>
+      <if test="test2 != null">
+        #{test2,jdbcType=VARCHAR},
+      </if>
+      <if test="test3 != null">
+        #{test3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hotel.core.entity.Restaurant">
+    update restaurant
+    <set>
+      <if test="restaurantType != null">
+        restaurant_type = #{restaurantType,jdbcType=VARCHAR},
+      </if>
+      <if test="restaurantPicture != null">
+        restaurant_picture = #{restaurantPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="restaurantIntro != null">
+        restaurant_intro = #{restaurantIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="foodName != null">
+        food_name = #{foodName,jdbcType=VARCHAR},
+      </if>
+      <if test="foodUnitPrice != null">
+        food_unit_price = #{foodUnitPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="foodPopularity != null">
+        food_popularity = #{foodPopularity,jdbcType=INTEGER},
+      </if>
+      <if test="foodNum != null">
+        food_num = #{foodNum,jdbcType=INTEGER},
+      </if>
+      <if test="registerDate != null">
+        register_date = #{registerDate,jdbcType=DATE},
+      </if>
+      <if test="createrId != null">
+        creater_id = #{createrId,jdbcType=INTEGER},
+      </if>
+      <if test="createrUsername != null">
+        creater_username = #{createrUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null">
+        modifier_id = #{modifierId,jdbcType=INTEGER},
+      </if>
+      <if test="modifierUsername != null">
+        modifier_username = #{modifierUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="foodInstock != null">
+        food_instock = #{foodInstock,jdbcType=INTEGER},
+      </if>
+      <if test="foodStates != null">
+        food_states = #{foodStates,jdbcType=INTEGER},
+      </if>
+      <if test="test1 != null">
+        test1 = #{test1,jdbcType=VARCHAR},
+      </if>
+      <if test="test2 != null">
+        test2 = #{test2,jdbcType=VARCHAR},
+      </if>
+      <if test="test3 != null">
+        test3 = #{test3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hotel.core.entity.Restaurant">
+    update restaurant
+    set restaurant_type = #{restaurantType,jdbcType=VARCHAR},
+      restaurant_picture = #{restaurantPicture,jdbcType=VARCHAR},
+      restaurant_intro = #{restaurantIntro,jdbcType=VARCHAR},
+      food_name = #{foodName,jdbcType=VARCHAR},
+      food_unit_price = #{foodUnitPrice,jdbcType=VARCHAR},
+      food_popularity = #{foodPopularity,jdbcType=INTEGER},
+      food_num = #{foodNum,jdbcType=INTEGER},
+      register_date = #{registerDate,jdbcType=DATE},
+      creater_id = #{createrId,jdbcType=INTEGER},
+      creater_username = #{createrUsername,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modifier_id = #{modifierId,jdbcType=INTEGER},
+      modifier_username = #{modifierUsername,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      food_instock = #{foodInstock,jdbcType=INTEGER},
+      food_states = #{foodStates,jdbcType=INTEGER},
+      test1 = #{test1,jdbcType=VARCHAR},
+      test2 = #{test2,jdbcType=VARCHAR},
+      test3 = #{test3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectRestaurantByLimit" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM restaurant
+    <where>
+      <if test="foodStates != null and foodStates != ''">
+        food_states = #{foodStates,jdbcType=INTEGER}
+      </if>
+    </where>
+    LIMIT #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+  <select id="selectCounts" resultType="int" parameterType="java.lang.Integer">
+    SELECT count(*)
+    FROM restaurant
+    <where>
+      <if test="foodStates != null and foodStates != ''">
+        food_states = #{foodStates,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+  <update id="updateRestaurant" parameterType="com.hotel.core.entity.Restaurant">
+    UPDATE restaurant
+    <set>
+      <if test="foodStates != null and foodStates != ''">
+        food_states = #{foodStates,jdbcType=INTEGER}
+      </if>
+    </set>
+    WHERE id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="searchRestaurant" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM restaurant
+    <where>
+      <if test="restaurantIntro != null and restaurantIntro != ''">
+        restaurant_intro LIKE "%"#{restaurantIntro,jdbcType=VARCHAR}"%"
+      </if>
+      AND food_states = 1
+    </where>
+  </select>
+  <select id="selectRestaurantListByFoodPopularitySortDesc" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM restaurant
+    <where>
+      <if test="foodStates != null and foodStates != ''">
+        food_states = #{foodStates,jdbcType=INTEGER}
+      </if>
+    </where>
+    ORDER BY food_popularity DESC
+    LIMIT #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+  <select id="selectRestaurantListByRestaurantType" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM restaurant
+    <where>
+      <if test="restaurantType != null and restaurantType != ''">
+        AND restaurant_type = #{restaurantType,jdbcType=INTEGER}
+      </if>
+      <if test="foodStates != null and foodStates != ''">
+        AND food_states = #{foodStates,jdbcType=INTEGER}
+      </if>
+    </where>
+    LIMIT #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+  <update id="updateStatesBatch" parameterType="java.util.List">
+    UPDATE restaurant
+    <set>
+      <if test="states != null and states != ''">
+        food_states = #{states,jdbcType=INTEGER}
+      </if>
+    </set>
+    WHERE id in
+    <foreach collection="list" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </update>
+  <delete id="deleteBatch" parameterType="java.util.List">
+    DELETE FROM restaurant
+    WHERE id in
+    <foreach collection="list" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+</mapper>

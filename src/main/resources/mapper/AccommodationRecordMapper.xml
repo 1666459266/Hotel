@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hotel.core.mapper.AccommodationRecordMapper">
+  <resultMap id="BaseResultMap" type="com.hotel.core.entity.AccommodationRecord">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="room_id" jdbcType="INTEGER" property="roomId" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
+    <result column="room_type" jdbcType="VARCHAR" property="roomType" />
+    <result column="room_number" jdbcType="INTEGER" property="roomNumber" />
+    <result column="room_price" jdbcType="VARCHAR" property="roomPrice" />
+    <result column="total_price" jdbcType="VARCHAR" property="totalPrice" />
+    <result column="checkin_date" jdbcType="DATE" property="checkinDate" />
+    <result column="departure_date" jdbcType="DATE" property="departureDate" />
+    <result column="test1" jdbcType="VARCHAR" property="test1" />
+    <result column="test2" jdbcType="VARCHAR" property="test2" />
+    <result column="test3" jdbcType="VARCHAR" property="test3" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, room_id, username, order_number, room_type, room_number, room_price, total_price, checkin_date,
+    departure_date, test1, test2, test3
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from accommodation_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from accommodation_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hotel.core.entity.AccommodationRecord" >
+    insert into accommodation_record (id, user_id, username,order_number,
+      room_type, room_number, room_price,
+      total_price, checkin_date, departure_date, 
+      room_id, test1, test2, test3
+      )
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR},  #{orderNumber,jdbcType=VARCHAR},
+      #{roomType,jdbcType=VARCHAR}, #{roomNumber,jdbcType=INTEGER}, #{roomPrice,jdbcType=VARCHAR}, 
+      #{totalPrice,jdbcType=VARCHAR}, #{checkinDate,jdbcType=DATE}, #{departureDate,jdbcType=DATE},
+      #{roomId,jdbcType=INTEGER}, #{test1,jdbcType=VARCHAR}, #{test2,jdbcType=VARCHAR}, #{test3,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hotel.core.entity.AccommodationRecord" useGeneratedKeys="true" keyProperty="id">
+    insert into accommodation_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="orderNumber != null">
+        order_number,
+      </if>
+      <if test="roomType != null">
+        room_type,
+      </if>
+      <if test="roomNumber != null">
+        room_number,
+      </if>
+      <if test="roomPrice != null">
+        room_price,
+      </if>
+      <if test="totalPrice != null">
+        total_price,
+      </if>
+      <if test="checkinDate != null">
+        checkin_date,
+      </if>
+      <if test="departureDate != null">
+        departure_date,
+      </if>
+      <if test="roomId != null">
+        room_id,
+      </if>
+      <if test="test1 != null">
+        test1,
+      </if>
+      <if test="test2 != null">
+        test2,
+      </if>
+      <if test="test3 != null">
+        test3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNumber != null">
+        #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="roomType != null">
+        #{roomType,jdbcType=VARCHAR},
+      </if>
+      <if test="roomNumber != null">
+        #{roomNumber,jdbcType=INTEGER},
+      </if>
+      <if test="roomPrice != null">
+        #{roomPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPrice != null">
+        #{totalPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="checkinDate != null">
+        #{checkinDate,jdbcType=DATE},
+      </if>
+      <if test="departureDate != null">
+        #{departureDate,jdbcType=DATE},
+      </if>
+      <if test="roomId != null">
+        #{roomId,jdbcType=INTEGER},
+      </if>
+      <if test="test1 != null">
+        #{test1,jdbcType=VARCHAR},
+      </if>
+      <if test="test2 != null">
+        #{test2,jdbcType=VARCHAR},
+      </if>
+      <if test="test3 != null">
+        #{test3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hotel.core.entity.AccommodationRecord">
+    update accommodation_record
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNumber != null">
+        order_number = #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="roomType != null">
+        room_type = #{roomType,jdbcType=VARCHAR},
+      </if>
+      <if test="roomNumber != null">
+        room_number = #{roomNumber,jdbcType=INTEGER},
+      </if>
+      <if test="roomPrice != null">
+        room_price = #{roomPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPrice != null">
+        total_price = #{totalPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="checkinDate != null">
+        checkin_date = #{checkinDate,jdbcType=DATE},
+      </if>
+      <if test="departureDate != null">
+        departure_date = #{departureDate,jdbcType=DATE},
+      </if>
+      <if test="roomId != null">
+        room_id = #{roomId,jdbcType=INTEGER},
+      </if>
+      <if test="test1 != null">
+        test1 = #{test1,jdbcType=VARCHAR},
+      </if>
+      <if test="test2 != null">
+        test2 = #{test2,jdbcType=VARCHAR},
+      </if>
+      <if test="test3 != null">
+        test3 = #{test3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hotel.core.entity.AccommodationRecord">
+    update accommodation_record
+    set user_id = #{userId,jdbcType=INTEGER},
+      username = #{username,jdbcType=VARCHAR},
+      order_number = #{orderNumber,jdbcType=VARCHAR},
+      room_type = #{roomType,jdbcType=VARCHAR},
+      room_number = #{roomNumber,jdbcType=INTEGER},
+      room_price = #{roomPrice,jdbcType=VARCHAR},
+      total_price = #{totalPrice,jdbcType=VARCHAR},
+      checkin_date = #{checkinDate,jdbcType=DATE},
+      departure_date = #{departureDate,jdbcType=DATE},
+      room_id = #{roomId,jdbcType=INTEGER},
+      test1 = #{test1,jdbcType=VARCHAR},
+      test2 = #{test2,jdbcType=VARCHAR},
+      test3 = #{test3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectAccommodationRecordByUserName" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from accommodation_record
+    where username = #{username,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAccommodationRecordByLimit" resultMap="BaseResultMap" parameterType="map">
+    select
+    <include refid="Base_Column_List" />
+    from accommodation_record
+    LIMIT #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+  <select id="selectCounts" resultType="INTEGER" parameterType="java.lang.Integer">
+    select count(*)
+    from accommodation_record
+  </select>
+  <select id="searchAccommodationRecord" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM accommodation_record
+    <where>
+      <if test="username != null and username != ''">
+        username LIKE "%"#{username,jdbcType=VARCHAR}"%"
+      </if>
+    </where>
+  </select>
+  <select id="selectAccommodationRecordListByCheckinDateSortDesc" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM accommodation_record
+    ORDER BY checkin_date DESC
+    LIMIT #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+  <select id="selectAccommodationRecordListByCheckinDateSortAsc" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM accommodation_record
+    ORDER BY checkin_date ASC
+    LIMIT #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+  <select id="selectAccommodationRecordListByDepartureDateSortDesc" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM accommodation_record
+    ORDER BY departure_date DESC
+    LIMIT #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+  <select id="selectAccommodationRecordListByDepartureDateSortAsc" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM accommodation_record
+    ORDER BY departure_date ASC
+    LIMIT #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+  <select id="selectAccommodationRecordListByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM accommodation_record
+    WHERE user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAccommodationRecordListByUserIdAndTime" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM accommodation_record
+    WHERE user_id = #{userId,jdbcType=INTEGER} AND checkin_date BETWEEN #{start,jdbcType=DATE} AND #{end,jdbcType=DATE}
+    ORDER BY checkin_date ASC
+  </select>
+  <select id="selectAccommodationRecordListByTime" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"></include>
+    FROM accommodation_record
+    WHERE checkin_date BETWEEN #{start,jdbcType=DATE} AND #{end,jdbcType=DATE}
+    ORDER BY checkin_date ASC
+  </select>
+  <select id="selectCountsByDay" resultType="map" >
+    SELECT
+    DATE_FORMAT(checkin_date,'%Y-%m-%d') AS checkin_date,COUNT(id) AS counts
+    FROM accommodation_record
+    WHERE room_type = #{roomType,jdbcType=VARCHAR} AND checkin_date BETWEEN #{start,jdbcType=DATE} AND #{end,jdbcType=DATE}
+    GROUP BY DAY(checkin_date)
+    ORDER BY checkin_date ASC
+  </select>
+  <select id="selectCountsByMonth" resultType="map" >
+    SELECT
+    DATE_FORMAT(checkin_date,'%Y-%m') AS checkin_date,COUNT(id) AS counts
+    FROM accommodation_record
+    WHERE room_type = #{roomType,jdbcType=VARCHAR} AND checkin_date BETWEEN #{start,jdbcType=DATE} AND #{end,jdbcType=DATE}
+    GROUP BY Month(checkin_date)
+    ORDER BY checkin_date ASC
+  </select>
+  <select id="selectCountsByYear" resultType="map" >
+    SELECT
+    DATE_FORMAT(checkin_date,'%Y') AS checkin_date,COUNT(id) AS counts
+    FROM accommodation_record
+    WHERE room_type = #{roomType,jdbcType=VARCHAR} AND checkin_date BETWEEN #{start,jdbcType=DATE} AND #{end,jdbcType=DATE}
+    GROUP BY Year(checkin_date)
+    ORDER BY checkin_date ASC
+  </select>
+  <delete id="deleteBatch" parameterType="java.util.List">
+    DELETE FROM accommodation_record
+    WHERE id in
+    <foreach collection="list" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+</mapper>
